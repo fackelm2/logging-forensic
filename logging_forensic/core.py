@@ -20,7 +20,7 @@ def forensic_logger(name: str,
         level = getattr(logging, level.upper(), logging.INFO)
 
     if logfile_path is None:
-        base_path = Path.cwd() / 'log'
+        base_path = Path.cwd() / 'log' # default log directory is "log/"
         base_path.mkdir(parents=True, exist_ok=True)
 
         timestring = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
@@ -43,12 +43,13 @@ def forensic_logger(name: str,
         logger.addHandler(file_handler)
 
         # optional console output
-        if console:
+        if console == 2:
             if verbose:
                 print(f'creating logger: {name} (console)')
             stream_handler = logging.StreamHandler()
             stream_handler.setLevel(level)
             stream_handler.setFormatter(formatter)
             logger.addHandler(stream_handler)
+
     logger.propagate = False
     return logger
