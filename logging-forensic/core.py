@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from datetime import datetime
 
-def logger_setup(name: str,
+def forensic_logger(name: str,
                  logfile_path: Path = None,
                  level=logging.INFO,
                  console: bool = True,
