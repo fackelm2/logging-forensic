@@ -43,7 +43,7 @@ def forensic_logger(name: str,
         logger.addHandler(file_handler)
 
         # optional console output
-        if console == 2:
+        if console:
             if verbose:
                 print(f'creating logger: {name} (console)')
             stream_handler = logging.StreamHandler()
