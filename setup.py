@@ -6,6 +6,6 @@ setup(
     packages=find_packages(),
     description='Forensic logging setup',
     author='Dietmar Fackelmann',
-    author_email='python@nmit.de',
+    author_email='fackelm2@nmit.de',
     license='MIT',
 )
