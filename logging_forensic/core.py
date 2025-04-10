@@ -28,14 +28,14 @@ def forensic_logger(name: str,
         logfile_path = base_path / filename
 
     if verbose:
-        print(f'log file path: {logfile_path}')
+        print(f'log file path  : {logfile_path}')
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
     if not logger.handlers:
         if verbose:
-            print(f'creating logger  : {name}')
+            print(f'creating logger: {name}')
         file_handler = logging.FileHandler(logfile_path)
         file_handler.setLevel(level)
         formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
