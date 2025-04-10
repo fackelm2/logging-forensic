@@ -9,9 +9,8 @@ def forensic_logger(name: str,
                  timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
 
-    print(f'logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
-
-
+    if verbose:
+        print(f'forensic-logger: logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
 
     """
     create and setup a logger with path "../log/" and optional timestamp and console logging
@@ -21,6 +20,7 @@ def forensic_logger(name: str,
     :param console: if true console logging
     :return: logger object
     """
+
     if isinstance(level, str):
         level = getattr(logging, level.upper(), logging.INFO)
 
