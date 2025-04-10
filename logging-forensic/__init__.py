@@ -1,1 +1,1 @@
-from .core import logger_setup
+from .core import forensic_logger
