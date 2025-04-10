@@ -44,7 +44,7 @@ def forensic_logger(name: str,
         # optional console output
         if console:
             if verbose:
-                print(f'creating console logger {name}')
+                print(f'creating logger {name} console')
             stream_handler = logging.StreamHandler()
             stream_handler.setLevel(level)
             stream_handler.setFormatter(formatter)
