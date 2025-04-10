@@ -3,7 +3,6 @@ requires = ['setuptools', 'wheel']
 build-backend = 'setuptools.build_meta'
 
 [project]
-packages = ['logging_forensic']
 name = 'logging-forensic'
 version = '0.1.0'
 description = 'forensic logging setup for python projects'
@@ -14,3 +13,5 @@ dependencies = []
 [project.urls]
 Homepage = 'https://github.com/fackelm2/logging-setup'
 
+[tool.setuptools.packages]
+include = ['logging_forensic']
