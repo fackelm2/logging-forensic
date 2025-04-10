@@ -8,6 +8,11 @@ def forensic_logger(name: str,
                  console: bool = False,
                  timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
+
+    print(f'logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
+
+
+
     """
     create and setup a logger with path "../log/" and optional timestamp and console logging
     :param name: name of the logger
