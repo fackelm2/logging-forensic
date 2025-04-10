@@ -26,8 +26,9 @@ def forensic_logger(name: str,
         timestring = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
         filename = f'{timestring}_{name}.log' if timestamp else f'{name}.log'
         logfile_path = base_path / filename
-        if verbose:
-            print(f'log file path: {logfile_path}')
+
+    if verbose:
+        print(f'log file path: {logfile_path}')
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
