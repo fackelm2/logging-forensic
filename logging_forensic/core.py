@@ -28,17 +28,14 @@ def forensic_logger(name: str,
         base_path = Path.cwd() / 'log' # default log directory is "log/"
         base_path.mkdir(parents=True, exist_ok=True)
 
-        if timestamp:
-            timestring = datetime.now().strftime("%Y%m%d-%H%M%S")
-            timestring = timestring + '_'
-        else:
-            timestring = ''
-        filename = f'{timestring}{name}.log'
+        timestring = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
+        filename = f'{timestring}_{name}.log' if timestamp else f'{name}.log'
         logfile_path = base_path / filename
-        print(f'logfile_path new: {logfile_path}')
+        if verbose:
+            print(f'forensic-logger: logfile_path set to: {logfile_path} ')
 
     if verbose:
-        print(f'log file path  : {logfile_path}')
+        print(f'forensic-logger: log file path  : {logfile_path}')
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
