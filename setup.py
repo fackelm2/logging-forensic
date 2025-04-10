@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='logging-setup',
+    name='logging-forensic',
     version='0.0.1',
     packages=find_packages(),
-    description='Logging setup',
+    description='Forensic logging setup',
     author='Dietmar Fackelmann',
     author_email='python@nmit.de',
     license='MIT',
