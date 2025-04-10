@@ -1,0 +1,14 @@
+[build-system]
+requires = ['setuptools', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'logging-setup'
+version = '0.1.0'
+description = 'logging setup for python projects'
+authors = [{ name = 'Dietmar Fackelmann', email = 'python@nmit.de'}]
+license = 'MIT'
+dependencies = []
+
+[project.urls]
+Homepage = 'https://github.com/fackelm2/logging-setup'
