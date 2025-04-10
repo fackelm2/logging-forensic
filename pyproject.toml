@@ -12,6 +12,3 @@ dependencies = []
 
 [project.urls]
 Homepage = 'https://github.com/fackelm2/logging-setup'
-
-#[tool.setuptools.packages]
-#include = ['logging_forensic']
