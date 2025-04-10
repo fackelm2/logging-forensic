@@ -4,12 +4,12 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'logging-forensic'
-version = '0.1.0'
+version = '0.1.1'
 description = 'Forensic logging setup for python projects'
 authors = [{ name = 'Dietmar Fackelmann', email = 'fackelm2@nmit.de'}]
 license = {text = 'MIT'}
 readme = 'README.md'
-requires-python = '>=3.7'
+requires-python = '>=3.12'
 dependencies = []
 
 [project.urls]
