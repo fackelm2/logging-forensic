@@ -35,14 +35,14 @@ def forensic_logger(name: str,
             print(f'forensic-logger: logfile_path set to: {logfile_path} ')
 
     if verbose:
-        print(f'forensic-logger: log file path  : {logfile_path}')
+        print(f'forensic-logger: log file path is {logfile_path}')
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
     if not logger.handlers:
         if verbose:
-            print(f'creating logger: {name}')
+            print(f'forensic-logger: creating logger {name}')
         file_handler = logging.FileHandler(logfile_path)
         file_handler.setLevel(level)
         formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
@@ -52,7 +52,7 @@ def forensic_logger(name: str,
         # optional console output
         if console:
             if verbose:
-                print(f'creating logger: {name} (console)')
+                print(f'forensic-logger creating logger {name} (console)')
             stream_handler = logging.StreamHandler()
             stream_handler.setLevel(level)
             stream_handler.setFormatter(formatter)
