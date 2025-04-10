@@ -5,8 +5,8 @@ from datetime import datetime
 def forensic_logger(name: str,
                  logfile_path: Path = None,
                  level=logging.INFO,
-                 console: bool = True,
-                 timestamp: bool = True,
+                 console: bool = False,
+                 timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
     """
     create and setup a logger with path "../log/" and optional timestamp and console logging
