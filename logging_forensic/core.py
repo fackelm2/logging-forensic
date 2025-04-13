@@ -13,7 +13,7 @@ def forensic_logger(name: str,
         print(f'forensic-logger: logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
 
     """
-    create and setup a logger with path "../log/" and optional timestamp and console logging
+    create and setup a logger with path "../log/",optional timestamp and optional console logging
     :param name: name of the logger
     :param logfile_path: path to log file
     :param level: logging level
