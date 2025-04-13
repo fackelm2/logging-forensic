@@ -6,7 +6,7 @@ build-backend = 'setuptools.build_meta'
 name = 'logging-forensic'
 version = '0.1.1'
 description = 'Forensic logging setup for python projects'
-authors = [{ name = 'Dietmar Fackelmann', email = 'fackelm2@nmit.de'}]
+authors = [{ name = 'Dietmar Fackelmann', email = 'logging-forenisc@nmit.de'}]
 license = 'MIT'
 readme = 'README.md'
 requires-python = '>=3.12'
