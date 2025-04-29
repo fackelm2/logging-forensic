@@ -42,7 +42,6 @@ and the designation of the logging file "date_casenumber.log"
 
 The implementation of the logging-forensic module necessitates its installation via pip, 
 followed by its utilization, as outlined in the provided example.
-
 ## Install logging-forensic via pip
 ````
 pip install git+https://github.com/fackelm2/logging-forensic.git
