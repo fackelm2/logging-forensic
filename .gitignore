@@ -1,0 +1,11 @@
+# created by virtualenv automatically
+.idea/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+*.log
+Pipfile.lock
