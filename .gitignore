@@ -1,11 +1,37 @@
-# created by virtualenv automatically
-.idea/
+# IntelliJ IDEA
+.idea/                          # komplette IDE-Configs ignorieren
+/.idea/.gitignore
+/.idea/analyze_hash_by_vt.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+*.iml                           # Module-Dateien ignorieren
+out/                            # Output-Ordner (Build-Artefakte)
+# Python virtual environments
 .venv/
+venv/
+ENV/
+env/
+# Sensible Daten / API-Keys
+secrets/
+*.key
+*.env
+# Python bytecode
 __pycache__/
+*.py[cod]
+# Project
+/secrets/
+/case/
+/input/
+/output/
+*.log
 .mypy_cache/
 .pytest_cache/
 dist/
 build/
 *.egg-info/
-*.log
 Pipfile.lock
+/.idea/jupyter-settings.xml
+/.idea/logging-forensic.iml
