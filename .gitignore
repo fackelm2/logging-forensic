@@ -14,15 +14,24 @@ secrets/
 # Python bytecode
 __pycache__/
 *.py[cod]
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+*.wheel
+# Test / coverage reports
+.coverage
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+# Mypy cache
+.mypy_cache/
 # Project
 /secrets/
 /case/
 /input/
 /output/
 *.log
-.mypy_cache/
-.pytest_cache/
-dist/
-build/
-*.egg-info/
-Pipfile.lock
