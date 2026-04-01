@@ -1,12 +1,5 @@
 # IntelliJ IDEA
 .idea/                          # komplette IDE-Configs ignorieren
-/.idea/.gitignore
-/.idea/analyze_hash_by_vt.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
 *.iml                           # Module-Dateien ignorieren
 out/                            # Output-Ordner (Build-Artefakte)
 # Python virtual environments
