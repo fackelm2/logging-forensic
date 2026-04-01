@@ -26,5 +26,3 @@ dist/
 build/
 *.egg-info/
 Pipfile.lock
-/.idea/jupyter-settings.xml
-/.idea/logging-forensic.iml
