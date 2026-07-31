@@ -1,7 +1,8 @@
 
 # Adapting the logging mechanism to meet forensic requirements 
-The objective of the tool is to augment Python's prevailing logging mechanism 
-to facilitate **case-based** logging.
+The objective of the tool is to augment Python’s prevailing logging mechanism to facilitate 
+case-based logging within forensic scripts, ensuring structured, persistent, and traceable 
+records suitable for auditing.
 
 The implementation of this tool involves the creation of a distinct log file 
 for each forensic case, with the option of directing this within a user-defined 
