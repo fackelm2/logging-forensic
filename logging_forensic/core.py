@@ -1,4 +1,7 @@
+"""Core functionality for the forensic logging package.
 
+This module provides helper functions for creating and configuring loggers.
+"""
 import logging
 from typing import Union, Optional
 from pathlib import Path
