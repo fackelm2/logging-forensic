@@ -4,6 +4,7 @@ from typing import Union, Optional
 from pathlib import Path
 from datetime import datetime
 
+
 def forensic_logger(name: str,
                  logfile_path: Optional[Path] = None,
                  level: Union[str, int] = logging.INFO,
