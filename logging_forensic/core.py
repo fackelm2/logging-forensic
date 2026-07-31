@@ -28,19 +28,19 @@ structured applications with minimal configuration.
 :rtype: logging.Logger
 """
 import logging
-from typing import Union
+from typing import Union, Optional
 from pathlib import Path
 from datetime import datetime
 
 def forensic_logger(name: str,
-                 logfile_path: Path = None,
+                 logfile_path: Optional[Path] = None,
                  level: Union[str, int] = logging.INFO,
                  console: bool = False,
                  timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
 
     if verbose:
-        print(f'forensic-logger: logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
+        print(f'forensic-logger: logfile path: {logfile_path!s}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
 
     """
     create and setup a logger with path "../log/",optional timestamp and optional console logging
