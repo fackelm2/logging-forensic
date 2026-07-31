@@ -1,10 +1,11 @@
 import logging
+from typing import Union
 from pathlib import Path
 from datetime import datetime
 
 def forensic_logger(name: str,
                  logfile_path: Path = None,
-                 level=logging.INFO,
+                 level: Union[str, int] = logging.INFO,
                  console: bool = False,
                  timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
