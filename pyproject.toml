@@ -1,12 +1,12 @@
 [build-system]
-requires = ['setuptools>=61.0', 'wheel']
+requires = ['setuptools>=75,<83', 'wheel']
 build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'logging-forensic'
-version = '0.1.1'
+version = '0.2.0'
 description = 'Forensic logging setup for python projects'
-authors = [{ name = 'Dietmar Fackelmann', email = 'logging-forenisc@nmit.de'}]
+authors = [{ name = 'Dietmar Fackelmann', email = 'logging-forensics@nmit.de'}]
 license = 'MIT'
 readme = 'README.md'
 requires-python = '>=3.12'
