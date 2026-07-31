@@ -39,9 +39,6 @@ def forensic_logger(name: str,
                  timestamp: bool = False,
                  verbose: bool = False) -> logging.Logger:
 
-    if verbose:
-        print(f'forensic-logger: logfile path: {logfile_path!s}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
-
     """
     create and setup a logger with path "../log/",optional timestamp and optional console logging
     :param name: name of the logger
@@ -65,7 +62,8 @@ def forensic_logger(name: str,
             print(f'forensic-logger: logfile_path set to: {logfile_path} ')
 
     if verbose:
-        print(f'forensic-logger: log file path is {logfile_path}')
+        print(f'forensic-logger: logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
+
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
