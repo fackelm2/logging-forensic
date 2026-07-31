@@ -39,7 +39,7 @@ def forensic_logger(name: str,
     :return: A configured logger instance.
     :rtype: logging.Logger
 
-    create and setup a logger with path "../log/",optional timestamp and optional console logging
+    create and set up a logger with path "../log/",optional timestamp and optional console logging
     """
 
     if isinstance(level, str):
