@@ -1,11 +1,37 @@
-# created by virtualenv automatically
-.idea/
+# IntelliJ IDEA
+.idea/                          # komplette IDE-Configs ignorieren
+*.iml                           # Module-Dateien ignorieren
+out/                            # Output-Ordner (Build-Artefakte)
+# Python virtual environments
 .venv/
+venv/
+ENV/
+env/
+# Sensible Daten / API-Keys
+secrets/
+*.key
+*.env
+# Python bytecode
 __pycache__/
-.mypy_cache/
-.pytest_cache/
-dist/
+*.py[cod]
+# Distribution / packaging
 build/
+dist/
 *.egg-info/
+*.egg
+*.wheel
+# Test / coverage reports
+.coverage
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+# Mypy cache
+.mypy_cache/
+# Project
+/secrets/
+/case/
+/input/
+/output/
 *.log
-Pipfile.lock
