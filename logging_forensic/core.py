@@ -17,7 +17,7 @@ def forensic_logger(name: str,
                  level: str | int = logging.INFO,
                  console: bool = False,
                  timestamp: bool = False,
-                 verbose: bool = False) -> Logger | None:
+                 verbose: bool = False) -> Logger:
     """A utility function to create and configure a customizable forensic logger.
 
     This function enables the creation of a logger with various options such as
@@ -50,7 +50,7 @@ def forensic_logger(name: str,
     create and set up a logger with path "log/", optional timestamp and optional console logging
     """
 
-    LOGGING_FORMAT = "%(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s"
+    logging_format = "%(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s"
 
     if isinstance(level, str):
         level_name = level.upper()
@@ -94,7 +94,7 @@ def forensic_logger(name: str,
 
         file_handler.setLevel(level)
 
-        formatter = UTCFormatter(LOGGING_FORMAT)
+        formatter = UTCFormatter(logging_format)
 
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
