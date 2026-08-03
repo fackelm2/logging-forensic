@@ -90,20 +90,28 @@ project/
 │
 ├── main.py
 └── log/
-    └── analysis.log
+    └── analyze.log
 
-### Logging Directory Structure - Option -o analyselogfile.log
+### Logging Directory Structure - Option --log-file analyselogfile.log
 project/
 │
 ├── main.py
-└── analyselogfile.log
+└── log/
+    └── analyselogfile.log
 
-### Logging Directory Structure - Option -o case/analyselogfile.log    
+### Logging Directory Structure - Option --log-dir case   
 project/
 │
 ├── main.py
 └── case/
-    └── analyselogfile.log
+    └── analyze.log
+
+### Logging Directory Structure - Option --log-dir case26 --log-file logfile.log
+project/
+│
+├── main.py
+└── case26/
+    └── logfile.log
 
 ### Example - using logging-forensic in "forensic-download.py"
 cat forensic-download.py
@@ -237,7 +245,6 @@ For evidentiary logging requirements, additional controls should be implemented.
 ### Requirements
 - Python 3.8+
 The package uses only Python's standard library.
-
 
 ### Development
 
