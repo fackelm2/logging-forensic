@@ -3,17 +3,18 @@
 This module provides helper functions for creating and configuring loggers.
 """
 import logging
-from typing import Union, Optional
+from cgitb import handler
+from logging import Logger
 from pathlib import Path
 from datetime import datetime
 
 
 def forensic_logger(name: str,
-                 logfile_path: Optional[Path] = None,
-                 level: Union[str, int] = logging.INFO,
+                 logfile_path: Path | None,
+                 level: str | int = logging.INFO,
                  console: bool = False,
                  timestamp: bool = False,
-                 verbose: bool = False) -> logging.Logger:
+                 verbose: bool = False) -> Logger | None:
     """A utility function to create and configure a customizable forensic logger.
 
     This function enables the creation of a logger with various options such as
@@ -50,26 +51,32 @@ def forensic_logger(name: str,
         level = getattr(logging, level.upper(), logging.INFO)
 
     if logfile_path is None:
-        base_path = Path.cwd() / 'log' # default log directory is "log/"
-        base_path.mkdir(parents=True, exist_ok=True)
+        log_path = Path.cwd() / 'log' # default log directory is "log/"
+        log_path.mkdir(parents=True, exist_ok=True)
 
-        timestring = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
-        filename = f'{timestring}_{name}.log' if timestamp else f'{name}.log'
-        logfile_path = base_path / filename
+        timestamp_str = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
+        filename = f'{timestamp_str}_{name}.log' if timestamp else f'{name}.log'
+        logfile_path = log_path / filename
         if verbose:
-            print(f'forensic-logger: logfile_path set to: {logfile_path} ')
+            logging.getLogger(__name__).debug(f'logfile path set to: {logfile_path}')
 
     if verbose:
-        print(f'forensic-logger: logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
+        logging.getLogger(__name__).debug(f'logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
 
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
-    if not logger.handlers:
+    if isinstance(handler, logging.FileHandler):
+        pass
+    else:
         if verbose:
-            print(f'forensic-logger: creating logger {name}')
-        file_handler = logging.FileHandler(logfile_path)
+            logging.getLogger(__name__).debug(f'creating logger {name}')
+        try: file_handler = logging.FileHandler(logfile_path, encoding='utf-8')
+        except Exception as e:
+            logging.getLogger(__name__).error(f'Error creating file handler: {e}')
+            return None
+
         file_handler.setLevel(level)
         formatter = logging.Formatter("%(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s")
         file_handler.setFormatter(formatter)
@@ -78,7 +85,7 @@ def forensic_logger(name: str,
         # optional console output
         if console:
             if verbose:
-                print(f'forensic-logger creating logger {name} (console)')
+                logging.getLogger(__name__).debug(f'forensic-logger creating logger {name} (console)')
             stream_handler = logging.StreamHandler()
             stream_handler.setLevel(level)
             stream_handler.setFormatter(formatter)
