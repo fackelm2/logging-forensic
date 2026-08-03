@@ -3,14 +3,18 @@
 This module provides helper functions for creating and configuring loggers.
 """
 import logging
-from cgitb import handler
+import typing
+from time import gmtime
 from logging import Logger
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
+
+class UTCFormatter(logging.Formatter):
+    converter = gmtime
 
 def forensic_logger(name: str,
-                 logfile_path: Path | None,
+                 logfile_path: Path | None = None,
                  level: str | int = logging.INFO,
                  console: bool = False,
                  timestamp: bool = False,
@@ -44,48 +48,62 @@ def forensic_logger(name: str,
     :return: A configured logger instance.
     :rtype: logging.Logger
 
-    create and set up a logger with path "../log/",optional timestamp and optional console logging
+    create and set up a logger with path "log/", optional timestamp and optional console logging
     """
 
+    LOGGING_FORMAT = "%(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s"
+
     if isinstance(level, str):
-        level = getattr(logging, level.upper(), logging.INFO)
+        level_name = level.upper()
+        # Use public API to check for level existence
+        valid_levels = logging.getLevelNamesMapping() if hasattr(logging, "getLevelNamesMapping") else logging._nameToLevel
+        if level_name not in valid_levels:
+            raise ValueError(f"Invalid logging level: {level}")
+        level = getattr(logging, level_name, logging.INFO)
+
 
     if logfile_path is None:
         log_path = Path.cwd() / 'log' # default log directory is "log/"
         log_path.mkdir(parents=True, exist_ok=True)
 
-        timestamp_str = datetime.now().strftime("%Y%m%d-%H%M%S") if timestamp else ''
+        timestamp_str = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f") if timestamp else ''
         filename = f'{timestamp_str}_{name}.log' if timestamp else f'{name}.log'
         logfile_path = log_path / filename
         if verbose:
-            logging.getLogger(__name__).debug(f'logfile path set to: {logfile_path}')
+            print(f'logfile path set to: {logfile_path}')
 
     if verbose:
-        logging.getLogger(__name__).debug(f'logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
+        print(f'logfile path: {logfile_path}; level: {level}; console: {console}; timestamp: {timestamp}; verbose: {verbose}')
 
 
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
-    if isinstance(handler, logging.FileHandler):
-        pass
-    else:
+    has_file_handler = any(
+        isinstance(h, logging.FileHandler)
+        for h in logger.handlers
+    )
+
+    if not has_file_handler:
         if verbose:
-            logging.getLogger(__name__).debug(f'creating logger {name}')
-        try: file_handler = logging.FileHandler(logfile_path, encoding='utf-8')
-        except Exception as e:
-            logging.getLogger(__name__).error(f'Error creating file handler: {e}')
-            return None
+            print(f'creating logger {name}')
+
+        try:
+            file_handler = logging.FileHandler(logfile_path, encoding='utf-8')
+        except OSError as e:
+            raise RuntimeError(f'Error creating file handler for {logfile_path}: {e}') from e
 
         file_handler.setLevel(level)
-        formatter = logging.Formatter("%(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s")
+
+        formatter = UTCFormatter(LOGGING_FORMAT)
+
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
 
         # optional console output
         if console:
             if verbose:
-                logging.getLogger(__name__).debug(f'forensic-logger creating logger {name} (console)')
+                print(f'forensic-logger: creating logger {name} (console)')
             stream_handler = logging.StreamHandler()
             stream_handler.setLevel(level)
             stream_handler.setFormatter(formatter)
