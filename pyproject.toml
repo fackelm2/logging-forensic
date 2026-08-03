@@ -9,7 +9,7 @@ description = 'Forensic logging setup for python projects'
 authors = [{ name = 'Dietmar Fackelmann', email = 'logging-forensics@nmit.de'}]
 license = 'MIT'
 readme = 'README.md'
-requires-python = '>=3.12'
+requires-python = '>=3.9'
 dependencies = []
 
 [project.urls]
