@@ -4,7 +4,7 @@ A lightweight Python helper library for creating structured file-based loggers
 for forensic, analysis, and automation workflows.
 
 logging-forensic provides a simple wrapper around Python's built-in logging module. 
-It helps create consistent log files with optional timestamps, 
+It helps create consistent log files with timestamps in (UTC+0), 
 console output, configurable log levels, and minimal setup.
 
 The package is designed for scripts, forensic utilities, analysis tools, 
@@ -14,7 +14,7 @@ Features:
 - Simple logger creation with one function call
 - File-based logging by default
 - Optional console output
-- Optional timestamped log filenames
+- Optional timestamped log filenames (UTC+0)
 - Supports Python logging levels as strings or constants
 - Automatic log directory creation
 - Uses Python's standard logging module
@@ -41,7 +41,7 @@ interoperability.
 If a logger with the same name already has handlers configured, the existing configuration is reused.
 The forensically traceable nature of the separate log data is conducive 
 to the clean documentation of individual analysis cases.
-Log files are written using UTF-8 encoding and is tested with Python 3.12.
+Log files are written using UTF-8 encoding and are tested with Python 3.12.
 
 It is imperative to exercise caution when utilising file and folder names, 
 ensuring that character validation is meticulously adhered to 
@@ -57,9 +57,9 @@ The translation was carried out using the DeepL.com free version.
 
 # Installation and usage of the logging-forensic module
 To illustrate, the configuration of logging can be facilitated through the utilization 
-of the logging-directory named as the case-name (for example "0001") 
+of the logging-directory named as the case-name (for example, "0001") 
 and the designation of the logging file "date_casename.log"
-(for example "2026-11-01_0001.log").
+(for example, "2026-11-01_0001.log").
 
 The implementation of the logging-forensic module necessitates its installation via pip, 
 followed by its utilization, as outlined in the provided example.
@@ -74,14 +74,14 @@ pip install logging-forensic
 pip install --upgrade logging-forensic
 ````
 
-## How to use logger-forensic in your python script
+## How to use logger-forensic in your Python script
 ````
 from logging_forensic import forensic_logger
 
 logger = forensic_logger("analysis")
 
 logger.info("Forensic analysis started")
-logger.error("File hash msimatch")
+logger.error("File hash mismatch")
 
 ````
 
@@ -92,21 +92,26 @@ project/
 └── log/
     └── analyze.log
 
-### Logging Directory Structure - Option --log-file analyselogfile.log
+### Logging Directory Structure - Custom logfile path
+The `logfile_path` parameter allows specifying a custom location and filename.
+
+Example: `forensic_logger("analysis", logfile_path=Path("log/analyselogfile.log"))`
 project/
 │
 ├── main.py
 └── log/
     └── analyselogfile.log
 
-### Logging Directory Structure - Option --log-dir case   
+### Logging Directory Structure - Custom directory
+Example: `forensic_logger("analysis", logfile_path=Path("case/analyze.log"))`
 project/
 │
 ├── main.py
 └── case/
     └── analyze.log
 
-### Logging Directory Structure - Option --log-dir case26 --log-file logfile.log
+### Logging Directory Structure - Custom directory and filename
+Example: `forensic_logger("analysis", logfile_path=Path("case26/logfile.log"))`
 project/
 │
 ├── main.py
@@ -119,7 +124,7 @@ cat forensic-download.py
 ..
 from logging_forensic import forensic_logger
 ..
-logfile_path = Path(__file__).resolve().parent.parent / 'log' / f'forenisc-download.log'
+logfile_path = Path(__file__).resolve().parent.parent / 'log' / f'forensic-download.log'
 logfile_path.parent.mkdir(parents=True, exist_ok=True)
 logger = forensic_logger('forensic-download', logfile_path, console=False, level='INFO', timestamp=True)
 ..
@@ -130,7 +135,7 @@ Logfile (default) will be written to: "log/forensic-download.log"
 ````
 $> cat log/forensic-download.log
 ..
-2026-11-01 17:48:38,712 - INFO - forensic-downlaod.py OK - downloaded file 1: https://apkid.de/test1.txt to D:\download_data\output\download_20250409174838
+2026-11-01 17:48:38,712 - INFO - forensic-download.py OK - downloaded file 1: https://apkid.de/test1.txt to D:\download_data\output\download_20250409174838
 2026-11-01 17:48:39,081 - INFO - forensic-download.py OK - downloaded file 2: https://apkid.de/wallpaper_16487800940ff7b95bc63e4c56a8843b2c50d3b0de.jpeg to D:\download_data\output\download_20250409174838
 ..
 ````
@@ -218,7 +223,7 @@ The second call does not create duplicate handlers.
 
 ### Log Format
 
-The default format is:
+The default format is (Timestamps in UTC+0):
 ````
 %(asctime)s %(levelname)-6s %(filename)s [%(funcName)s] - %(message)s
 ````
@@ -243,7 +248,7 @@ The package does not provide:
 For evidentiary logging requirements, additional controls should be implemented.
 
 ### Requirements
-- Python 3.8+
+- Python 3.10+
 The package uses only Python's standard library.
 
 ### Development
