@@ -3,7 +3,6 @@
 This module provides helper functions for creating and configuring loggers.
 """
 import logging
-import typing
 from time import gmtime
 from logging import Logger
 from pathlib import Path
